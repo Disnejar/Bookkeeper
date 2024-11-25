@@ -1,0 +1,10 @@
+{
+    "cmake.sourceDirectory": "/home/disnejar/Documents/Projects/Bookkeeper",
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "files.associations": {
+        "unordered_map": "cpp",
+        "chrono": "cpp",
+        "cstring": "cpp",
+        "algorithm": "cpp"
+    }
+}

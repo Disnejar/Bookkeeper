@@ -1,0 +1,15 @@
+[submodule "glfw"]
+	path = glfw
+	url = https://github.com/glfw/glfw
+[submodule "imgui"]
+	path = imgui
+	url = https://github.com/ocornut/imgui
+[submodule "ImGuiDatePicker"]
+	path = ImGuiDatePicker
+	url = https://github.com/DnA-IntRicate/ImGuiDatePicker
+[submodule "ImFileDialog"]
+	path = ImFileDialog
+	url = https://github.com/dfranx/ImFileDialog
+[submodule "stb"]
+	path = stb
+	url = https://github.com/nothings/stb/
