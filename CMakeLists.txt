@@ -35,17 +35,21 @@ set_target_properties(imgui PROPERTIES LINKER_LANGUAGE CXX)
 include_directories(${IMGUI_DIR})
 target_link_libraries(imgui "glfw;Vulkan::Vulkan;stb")
 
+set(IMGUI_ADDONS_SRC)
+
 # ImFileDialog
 set(IMFILEDIALOG_DIR ${PROJECT_SOURCE_DIR}/ImFileDialog)
 file(GLOB IMFILEDIALOG_SRC CONFIGURE_DEPENDS ${IMFILEDIALOG_DIR}/ImFileDialog.cpp)
 include_directories(${IMFILEDIALOG_DIR})
+set(IMGUI_ADDONS_SRC ${IMGUI_ADDONS_SRC} ${IMFILEDIALOG_SRC})
 
 # ImDatePicker
 set(IMDATEPICKER_DIR ${PROJECT_SOURCE_DIR}/ImGuiDatePicker)
 file(GLOB IMDATEPICKER_SRC CONFIGURE_DEPENDS ${IMDATEPICKER_DIR}/ImGuiDatePicker.cpp)
 include_directories(${IMDATEPICKER_DIR})
+set(IMGUI_ADDONS_SRC ${IMGUI_ADDONS_SRC} ${IMDATEPICKER_SRC})
 
-add_library(imgui_addons STATIC ${IMFILEDIALOG_SRC} ${IMDATEPICKER_SRC})
+add_library(imgui_addons STATIC ${IMGUI_ADDONS_SRC})
 set_target_properties(imgui_addons PROPERTIES LINKER_LANGUAGE CXX)
 target_link_libraries(imgui_addons "imgui;stb")
 

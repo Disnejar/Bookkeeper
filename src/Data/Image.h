@@ -1,8 +1,13 @@
 #pragma once
-#include "imgui.h"
-#include "imgui_impl_vulkan.h"
+#include "../VulkanBackend.h"
 
-struct ImageTextureData
+enum ImageColorFormat
+{
+    BGRA = 0,
+    RGBA = 1
+};
+
+struct ImageTexture
 {
     VkDescriptorSet DS; // Descriptor set: this is what you'll pass to Image()
     int Width;
@@ -17,16 +22,11 @@ struct ImageTextureData
     VkBuffer UploadBuffer;
     VkDeviceMemory UploadBufferMemory;
 
-    ImageTextureData() { memset(this, 0, sizeof(*this)); }
+    ImageTexture();
 };
 
-class Image
-{
-    ImageTextureData data;
+VkFormat GetVulkanColorFormat(ImageColorFormat fmt);
 
-    Image(uint8_t *data, int w, int h, char fmt);
+bool CreateVulkanTexture(ImageTexture *tex_data, uint8_t *data, ImageColorFormat fmt = ImageColorFormat::RGBA);
 
-    ~Image();
-
-    operator ImTextureID() const { return (ImTextureID)data.DS; }
-};
+void RemoveVulkanTexture(ImageTexture *tex_data);

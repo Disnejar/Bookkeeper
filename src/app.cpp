@@ -1,6 +1,6 @@
 #include "app.h"
 #include "imgui.h"
-//#include "ImFileDialog.h"
+#include "ImFileDialog.h"
 //#include "ImGuiDatePicker.hpp"
 #include <chrono>
 
@@ -35,7 +35,17 @@ void RenderFrame()
         //ImGui::DatePicker("Date and time", testTime);
         if(ImGui::Button("Browse"))
         {
-            
+            ifd::FileDialog::Instance().Open("TextureOpenDialog", "Open a texture", "Image file (*.png;*.jpg;*.jpeg;*.bmp;*.tga){.png,.jpg,.jpeg,.bmp,.tga},.*");
+        }
+
+        if (ifd::FileDialog::Instance().IsDone("TextureOpenDialog"))
+        {
+            if (ifd::FileDialog::Instance().HasResult())
+            {
+                std::string res = ifd::FileDialog::Instance().GetResult().u8string();
+                printf("OPEN[%s]\n", res.c_str());
+            }
+            ifd::FileDialog::Instance().Close();
         }
         ImGui::End();
     }
